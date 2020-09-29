@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     //login variables
     SQLiteDatabase db;
     SQLiteOpenHelper openHelper;
-    Button sBtn;
+    Button sBtn, btnshare;
     EditText txt_name, txt_pass;
     Cursor cursor;                    //new class
 
@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         txt_name = (EditText)findViewById(R.id.editSign);
         txt_pass = (EditText)findViewById(R.id.editPass);
 
+        btnshare = findViewById(R.id.button3);
+
     }
 
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent("com.example.ranul.myapplication.ForgotActivity");
+                        Intent intent = new Intent(MainActivity.this, ForgotActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         if (cursor != null){
                             if (cursor.getCount()>0){
                                 cursor.moveToNext();
-                                Intent welcome_Intent = new Intent("com.example.ranul.myapplication.Welcome");
+                                Intent welcome_Intent = new Intent(MainActivity.this, Welcome.class);
                                 startActivity(welcome_Intent);
                                 Toast.makeText(getApplicationContext(), "SuccessFully Login", Toast.LENGTH_LONG).show();
                             }else {
@@ -82,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent("com.example.ranul.myapplication.RegisterActivity");
+                        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                         startActivity(intent);
                     }
                 }
         );
+
     }
 
 

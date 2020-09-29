@@ -1,5 +1,6 @@
 package com.example.ranul.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     EditText editname, editemail, editmobile, editpassword;
-    Button regisBtn;
+    Button regisBtn, btnshare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         editmobile   = (EditText)findViewById(R.id.editMobile);
         editpassword = (EditText)findViewById(R.id.editPassword);
         regisBtn     = (Button) findViewById(R.id.registBtn);
+        btnshare = findViewById(R.id.button3);
 
         addData();
     }
@@ -48,5 +50,21 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                 });
+
+        btnshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Please find us in google play";
+                String shareSub = "WallApp - Find your Wallpaper easy";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
+            }
+        });
     }
+
+
 }
